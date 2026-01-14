@@ -7,7 +7,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <main className="app-shell">
       <div className="admin-shell">
         <nav className="side-nav">
-          <h2>YoYo Builder</h2>
+          <h2>Yoyo Builder</h2>
           <Link href="/admin/campaigns">Campaigns</Link>
           <Link href="/admin/templates">Templates</Link>
           <Link href="/admin/simulator">Simulator</Link>

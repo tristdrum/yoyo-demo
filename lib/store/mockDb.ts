@@ -54,7 +54,7 @@ function seedDb(): MockDb {
   const campaign: Campaign = {
     id: createId("campaign"),
     name: "Surprise & Delight - Morning Rush",
-    retailer: "YoYo Demo Retailer",
+    retailer: "Yoyo Demo Retailer",
     status: "live",
     startAt: toIso(now),
     endAt: null,
@@ -97,7 +97,7 @@ export const mockStore = {
     const campaign: Campaign = {
       id: createId("campaign"),
       name: payload.name ?? "New Campaign",
-      retailer: payload.retailer ?? "YoYo Demo Retailer",
+      retailer: payload.retailer ?? "Yoyo Demo Retailer",
       status: payload.status ?? "draft",
       startAt: payload.startAt ?? toIso(now),
       endAt: payload.endAt ?? null,
