@@ -1,6 +1,6 @@
 # yoyo-demo
 
-Surprise & Delight Campaign Builder demo for YoYo.
+Surprise & Delight Campaign Builder demo for Yoyo.
 
 ## Quick start
 

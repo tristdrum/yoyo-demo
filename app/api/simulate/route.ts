@@ -98,14 +98,37 @@ export async function POST(request: Request) {
 
   let rewardIssue: RewardIssue | null = null;
   const messageAttempts: Array<{ channel: string; status: string; error?: string | null }> = [];
+  let rewardError: string | null = null;
 
   if (decision.shouldIssue && decision.rewardTemplateId) {
     const rewardProvider = getRewardsProvider();
-    const rewardResult = await rewardProvider.issueReward({
-      userRef: event.customerRef,
-      campaignId: campaign.id,
-      templateId: decision.rewardTemplateId
-    });
+    const selectedReward = rewardTemplates.find((reward) => reward.id === decision.rewardTemplateId);
+    let rewardResult: { voucherCode: string; expiresAt: string } | null = null;
+    try {
+      rewardResult = await rewardProvider.issueReward({
+        userRef: event.customerRef,
+        templateId: decision.rewardTemplateId,
+        cvsCampaignId: selectedReward?.cvsCampaignId ?? null,
+        metadata: { additionalInfo: event.reference }
+      });
+    } catch (error) {
+      rewardError = (error as Error).message;
+    }
+
+    if (!rewardResult) {
+      rewardIssue = {
+        id: crypto.randomUUID(),
+        eventId: event.id,
+        campaignId: campaign.id,
+        rewardTemplateId: decision.rewardTemplateId,
+        customerRef: event.customerRef,
+        voucherCode: "ERROR",
+        status: "failed",
+        createdAt: toIso(now)
+      };
+      await store.addRewardIssue(rewardIssue);
+      return NextResponse.json({ event, earnGateway, campaign, decision, rewardIssue, rewardError, messageAttempts });
+    }
 
     rewardIssue = {
       id: crypto.randomUUID(),
@@ -173,5 +196,5 @@ export async function POST(request: Request) {
     }
   }
 
-  return NextResponse.json({ event, earnGateway, campaign, decision, rewardIssue, messageAttempts });
+  return NextResponse.json({ event, earnGateway, campaign, decision, rewardIssue, rewardError, messageAttempts });
 }

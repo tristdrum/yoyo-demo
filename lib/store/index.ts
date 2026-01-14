@@ -1,7 +1,7 @@
-import { mockStore } from "@/lib/store/mockDb";
+import { supabaseStore } from "@/lib/store/supabaseStore";
 
-export type DataStore = typeof mockStore;
+export type DataStore = typeof supabaseStore;
 
 export function getStore(): DataStore {
-  return mockStore;
+  return supabaseStore;
 }
