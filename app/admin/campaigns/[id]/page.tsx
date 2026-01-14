@@ -13,26 +13,67 @@ export default function CampaignDetailPage() {
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [rewardTemplates, setRewardTemplates] = useState<RewardTemplate[]>([]);
   const [messageTemplates, setMessageTemplates] = useState<MessageTemplate[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     async function load() {
-      const [campaignRes, rewardsRes, messagesRes] = await Promise.all([
-        fetch(`/api/campaigns/${id}`, { cache: "no-store" }),
-        fetch("/api/templates/rewards", { cache: "no-store" }),
-        fetch("/api/templates/messages", { cache: "no-store" })
-      ]);
-      setCampaign((await campaignRes.json()) as Campaign);
-      setRewardTemplates((await rewardsRes.json()) as RewardTemplate[]);
-      setMessageTemplates((await messagesRes.json()) as MessageTemplate[]);
+      setLoading(true);
+      setErrorMessage(null);
+      try {
+        const [campaignRes, rewardsRes, messagesRes] = await Promise.all([
+          fetch(`/api/campaigns/${id}`, { cache: "no-store" }),
+          fetch("/api/templates/rewards", { cache: "no-store" }),
+          fetch("/api/templates/messages", { cache: "no-store" })
+        ]);
+
+        if (!campaignRes.ok) {
+          const body = (await campaignRes.json().catch(() => null)) as { error?: string } | null;
+          setCampaign(null);
+          setErrorMessage(body?.error ?? "Rule not found.");
+          return;
+        }
+
+        const [campaignData, rewardsData, messagesData] = await Promise.all([
+          campaignRes.json() as Promise<Campaign>,
+          rewardsRes.ok ? (rewardsRes.json() as Promise<RewardTemplate[]>) : Promise.resolve([]),
+          messagesRes.ok ? (messagesRes.json() as Promise<MessageTemplate[]>) : Promise.resolve([])
+        ]);
+
+        setCampaign(campaignData);
+        setRewardTemplates(Array.isArray(rewardsData) ? rewardsData : []);
+        setMessageTemplates(Array.isArray(messagesData) ? messagesData : []);
+      } catch (error) {
+        console.error("Failed to load campaign detail", error);
+        setCampaign(null);
+        setErrorMessage("Something went wrong loading this rule.");
+      } finally {
+        setLoading(false);
+      }
     }
     if (id) {
       void load();
     }
   }, [id]);
 
-  if (!campaign) {
+  if (loading) {
     return <div className="card">Loading rule...</div>;
+  }
+
+  if (errorMessage) {
+    return (
+      <div className="card">
+        <p style={{ marginBottom: 16 }}>{errorMessage}</p>
+        <Button type="button" onClick={() => router.push("/admin/campaigns")}>
+          Back to rules
+        </Button>
+      </div>
+    );
+  }
+
+  if (!campaign) {
+    return <div className="card">Rule unavailable.</div>;
   }
 
   async function handleSave(event: React.FormEvent<HTMLFormElement>) {
