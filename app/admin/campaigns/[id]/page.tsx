@@ -37,6 +37,9 @@ export default function CampaignDetailPage() {
 
   async function handleSave(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!campaign) {
+      return;
+    }
     setSaving(true);
     const form = new FormData(event.currentTarget);
     const selectedRewards = rewardTemplates
