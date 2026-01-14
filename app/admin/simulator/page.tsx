@@ -14,7 +14,7 @@ export default function SimulatorPage() {
     const payload = {
       reference: String(form.get("reference") || "demo-ref"),
       amount: Number(form.get("amount") || 2000),
-      storeRef: String(form.get("storeRef") || "1050"),
+      storeRef: String(form.get("storeRef") || "162939"),
       customerRef: String(form.get("customerRef") || "alias-demo"),
       msisdn: String(form.get("msisdn") || "") || undefined,
       callEarnGateway: form.get("callEarnGateway") === "on"
@@ -47,7 +47,7 @@ export default function SimulatorPage() {
           </div>
           <div className="field">
             <label>Store Ref</label>
-            <input name="storeRef" defaultValue="1050" />
+            <input name="storeRef" defaultValue="162939" />
           </div>
           <div className="field">
             <label>Customer Alias</label>
