@@ -389,7 +389,8 @@ export const supabaseStore = {
     if (versionError) {
       throw new Error(`Failed to resolve campaign version: ${versionError.message}`);
     }
-    const currentVersion = versionData?.[0]?.version ?? 0;
+    const versionRow = (versionData?.[0] as { version: number } | undefined) ?? undefined;
+    const currentVersion = versionRow?.version ?? 0;
     const insert = {
       campaign_id: campaignId,
       version: currentVersion + 1,
