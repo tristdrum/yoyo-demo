@@ -28,8 +28,8 @@ export default function CampaignsPage() {
     const formEl = event.currentTarget;
     const form = new FormData(formEl);
     const payload = {
-      name: String(form.get("name") || "New Campaign"),
-      retailer: String(form.get("retailer") || "Yoyo Demo Retailer"),
+      name: String(form.get("name") || "New Loyalty Rule"),
+      retailer: String(form.get("retailer") || "YoYo Demo Retailer"),
       probability: Number(form.get("probability") || 0.02),
       capWindow: String(form.get("capWindow") || "week"),
       capMax: Number(form.get("capMax") || 1),
@@ -51,18 +51,18 @@ export default function CampaignsPage() {
   return (
     <>
       <SectionHeader
-        title="Campaigns"
-        subtitle="Create and tune Surprise & Delight campaigns with probability and caps."
+        title="Loyalty Rules"
+        subtitle="Create and tune Surprise & Delight loyalty rules with probability and caps."
       />
       <div className="card">
         <form className="form-grid" onSubmit={handleCreate}>
           <div className="field">
             <label>Name</label>
-            <input name="name" placeholder="Morning Rush Rewards" required />
+            <input name="name" placeholder="Morning Rush Rule" required />
           </div>
           <div className="field">
             <label>Retailer</label>
-            <input name="retailer" placeholder="Yoyo Demo Retailer" />
+            <input name="retailer" placeholder="YoYo Demo Retailer" />
           </div>
           <div className="field">
             <label>Status</label>
@@ -90,15 +90,15 @@ export default function CampaignsPage() {
           <div className="field">
             <label>&nbsp;</label>
             <Button type="submit" disabled={creating}>
-              {creating ? "Creating..." : "Create Campaign"}
+              {creating ? "Creating..." : "Create Rule"}
             </Button>
           </div>
         </form>
       </div>
 
       <div className="section-header">
-        <h2>Active Workspace</h2>
-        <p>{loading ? "Loading campaigns..." : `${campaigns.length} campaign(s)`}</p>
+        <h2>Active Rules</h2>
+        <p>{loading ? "Loading rules..." : `${campaigns.length} rule(s)`}</p>
       </div>
       <div className="card-grid">
         {campaigns.map((campaign, index) => (
@@ -111,7 +111,7 @@ export default function CampaignsPage() {
             <p>Probability: {(campaign.probability * 100).toFixed(2)}%</p>
             <p>Caps: {campaign.capMax} per {campaign.capWindow}</p>
             <Link href={`/admin/campaigns/${campaign.id}`} className="button button-ghost card-cta">
-              Edit rules
+              Edit rule
             </Link>
           </div>
         ))}

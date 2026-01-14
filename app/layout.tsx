@@ -13,8 +13,8 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Surprise & Delight Campaign Builder",
-  description: "Admin demo for Surprise & Delight rewards campaigns."
+  title: "Surprise & Delight Loyalty Rules Builder",
+  description: "Admin demo for Surprise & Delight loyalty rule orchestration."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

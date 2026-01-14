@@ -96,8 +96,8 @@ export const mockStore = {
     const rewardTemplates = getDb().rewardTemplates;
     const campaign: Campaign = {
       id: createId("campaign"),
-      name: payload.name ?? "New Campaign",
-      retailer: payload.retailer ?? "Yoyo Demo Retailer",
+      name: payload.name ?? "New Loyalty Rule",
+      retailer: payload.retailer ?? "YoYo Demo Retailer",
       status: payload.status ?? "draft",
       startAt: payload.startAt ?? toIso(now),
       endAt: payload.endAt ?? null,

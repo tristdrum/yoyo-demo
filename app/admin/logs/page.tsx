@@ -52,7 +52,7 @@ export default function LogsPage() {
         <table className="table">
           <thead>
             <tr>
-              <th>Campaign</th>
+              <th>Rule</th>
               <th>Reward</th>
               <th>Voucher</th>
               <th>Status</th>

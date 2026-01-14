@@ -106,6 +106,9 @@ export default function SimulatorPage() {
               <p>Status: {(result as any).rewardIssue?.status ?? "-"}</p>
               <p>Voucher: {(result as any).rewardIssue?.voucherCode ?? "-"}</p>
               <p>Template: {(result as any).rewardIssue?.rewardTemplateId ?? "-"}</p>
+              {(result as any).rewardError ? (
+                <p className="pill pill-warn">Error: {(result as any).rewardError}</p>
+              ) : null}
             </div>
             <div className="summary-card">
               <h4>Messaging</h4>

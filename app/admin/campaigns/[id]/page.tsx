@@ -32,7 +32,7 @@ export default function CampaignDetailPage() {
   }, [id]);
 
   if (!campaign) {
-    return <div className="card">Loading campaign...</div>;
+    return <div className="card">Loading rule...</div>;
   }
 
   async function handleSave(event: React.FormEvent<HTMLFormElement>) {
@@ -125,7 +125,7 @@ export default function CampaignDetailPage() {
             </select>
           </div>
           <div className="field" style={{ gridColumn: "1 / -1" }}>
-            <label>Rewards in Campaign</label>
+            <label>Rewards in Rule</label>
             <div className="card-grid">
               {rewardTemplates.map((reward) => (
                 <label key={reward.id} className="card" style={{ cursor: "pointer" }}>

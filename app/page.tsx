@@ -7,8 +7,8 @@ export default function HomePage() {
     <main className="app-shell">
       <section className="hero">
         <div>
-          <Image src={logo} alt="Yoyo Logo" width={150} height={50} style={{ marginBottom: "1.5rem" }} />
-          <p className="badge badge-neutral">Surprise & Delight Builder</p>
+          <Image src={logo} alt="YoYo Logo" width={150} height={50} style={{ marginBottom: "1.5rem" }} />
+          <p className="badge badge-neutral">Surprise & Delight Loyalty Rules</p>
           <h1>Turn transactions into moments worth talking about.</h1>
           <p>
             This demo mirrors the Earn Gateway flow: a transaction arrives, probability decides, a
@@ -25,7 +25,7 @@ export default function HomePage() {
         </div>
         <div className="hero-card">
           <h3>Demo flow snapshot</h3>
-          <p>1. Build a campaign with probability + caps.</p>
+          <p>1. Build a loyalty rule with probability + caps.</p>
           <p>2. Simulate a transaction and evaluate eligibility.</p>
           <p>3. Issue reward + send message with fallback.</p>
           <p>4. Review logs for full traceability.</p>
