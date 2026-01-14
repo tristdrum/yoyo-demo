@@ -4,6 +4,8 @@ export type IssueRewardInput = {
   userRef: string;
   templateId: string;
   cvsCampaignId?: string | null;
+  transactionRef?: string;
+  programId?: string;
   metadata?: {
     additionalInfo?: string;
     numExpiryDays?: number;
@@ -50,7 +52,9 @@ class LiveRewardsProvider implements RewardsProvider {
     const body = {
       userRef: input.userRef,
       campaignId,
-      additionalInfo: input.metadata?.additionalInfo ?? "",
+      additionalInfo:
+        input.metadata?.additionalInfo ??
+        [input.programId, input.transactionRef].filter(Boolean).join(":"),
       numExpiryDays
     };
     const response = await fetch(url, {

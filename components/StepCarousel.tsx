@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 
 const steps = [
-  { number: 1, text: "Build a campaign with probability + caps." },
-  { number: 2, text: "Simulate a transaction and evaluate eligibility." },
-  { number: 3, text: "Issue reward + send message with fallback." },
-  { number: 4, text: "Review logs for full traceability." },
+  { number: 1, text: "Build a campaign with global Nth rules + priorities." },
+  { number: 2, text: "Simulate counter outcomes and reward probabilities." },
+  { number: 3, text: "Issue CVS rewards or grant competition entries." },
+  { number: 4, text: "Review decision logs for full traceability." }
 ];
 
 export function StepCarousel() {

@@ -9,8 +9,8 @@ export default function HomePage() {
           <p className="badge badge-neutral animate-in delay-0">Surprise & Delight Builder</p>
           <h1>Turn transactions into moments worth talking about.</h1>
           <p className="hero-description animate-in delay-1">
-            This demo mirrors the Earn Gateway flow: a transaction arrives, probability decides, a
-            reward is issued, and messaging follows with WhatsApp first and SMS as fallback.
+            This demo mirrors the Earn Gateway flow: a transaction arrives, global Nth rules are
+            evaluated, CVS issues the reward, and competition entry is handled when no reward lands.
           </p>
           <div className="hero-actions animate-in delay-2">
             <Link href="/admin/campaigns" className="button button-primary">

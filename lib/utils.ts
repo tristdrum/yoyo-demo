@@ -29,3 +29,36 @@ export function startOfWeek(date: Date): Date {
 export function toIso(date: Date): string {
   return date.toISOString();
 }
+
+export function gcd(a: number, b: number): number {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y) {
+    const temp = y;
+    y = x % y;
+    x = temp;
+  }
+  return x || 1;
+}
+
+export function lcm(a: number, b: number): number {
+  if (!a || !b) return 0;
+  return Math.abs((a * b) / gcd(a, b));
+}
+
+export function parseTimeToMinutes(time: string): number | null {
+  const match = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(time);
+  if (!match) return null;
+  return Number(match[1]) * 60 + Number(match[2]);
+}
+
+export function isWithinTimeWindow(date: Date, start: string, end: string): boolean {
+  const startMin = parseTimeToMinutes(start);
+  const endMin = parseTimeToMinutes(end);
+  if (startMin === null || endMin === null) return false;
+  const value = date.getHours() * 60 + date.getMinutes();
+  if (startMin <= endMin) {
+    return value >= startMin && value <= endMin;
+  }
+  return value >= startMin || value <= endMin;
+}

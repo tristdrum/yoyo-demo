@@ -11,7 +11,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <nav className="side-nav">
           <Image src={logo} alt="YoYo Logo" width={120} height={40} style={{ marginBottom: "1rem" }} />
           <h2>YoYo Loyalty Builder</h2>
-          <Link href="/admin/campaigns">Loyalty Rules</Link>
+          <Link href="/admin/campaigns">Campaigns</Link>
           <Link href="/admin/templates">Templates</Link>
           <Link href="/admin/simulator">Simulator</Link>
           <Link href="/admin/logs">Logs</Link>

@@ -1,6 +1,6 @@
 # yoyo-demo
 
-Surprise & Delight Campaign Builder demo for Yoyo.
+Surprise & Delight Campaign Builder + Rule Engine demo for YoYo.
 
 ## Quick start
 
@@ -17,9 +17,10 @@ Copy `.env.example` to `.env` and fill in values if you want live integrations.
 
 ## Notes
 
-- Mock mode is the default until Earn Gateway and messaging credentials are provided.
+- Mock mode is the default until CVS issuer and Earn Gateway credentials are provided.
+- See `docs/rule-engine.md` for API contracts, data model, and operational notes.
 - See `ASSUMPTIONS.md` for current constraints.
 
-## Simulator note
+## Simulator
 
-Toggle "Call Earn Gateway" in `/admin/simulator` to hit the real Earn Gateway when live env vars are set.
+Use `/admin/simulator` to preview Nth rules, run batch simulations, or fire a live rule-engine request.

@@ -2,95 +2,51 @@
 
 import { useEffect, useState } from "react";
 import { SectionHeader } from "@/components/ui";
-import type { LogsSnapshot } from "@/lib/types";
-
-const emptyLogs: LogsSnapshot = { events: [], rewardIssues: [], messageAttempts: [] };
+import type { DecisionLog } from "@/lib/types";
 
 export default function LogsPage() {
-  const [logs, setLogs] = useState<LogsSnapshot>(emptyLogs);
+  const [decisions, setDecisions] = useState<DecisionLog[]>([]);
 
   useEffect(() => {
     async function load() {
       const res = await fetch("/api/logs", { cache: "no-store" });
-      setLogs((await res.json()) as LogsSnapshot);
+      const data = (await res.json()) as { decisions: DecisionLog[] };
+      setDecisions(data.decisions ?? []);
     }
     void load();
   }, []);
 
   return (
     <>
-      <SectionHeader title="Logs" subtitle="Inspect events, rewards, and message attempts." />
+      <SectionHeader title="Decision logs" subtitle="Inspect evaluated transactions and outcomes." />
 
       <div className="card">
-        <h3>Recent events</h3>
         <table className="table">
           <thead>
             <tr>
-              <th>Reference</th>
-              <th>Customer</th>
-              <th>Store</th>
-              <th>Amount</th>
-              <th>Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            {logs.events.map((event) => (
-              <tr key={event.id}>
-                <td>{event.reference}</td>
-                <td>{event.customerRef}</td>
-                <td>{event.storeRef}</td>
-                <td>{event.amount}</td>
-                <td>{new Date(event.createdAt).toLocaleString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="card">
-        <h3>Reward issues</h3>
-        <table className="table">
-          <thead>
-            <tr>
+              <th>Transaction</th>
+              <th>Program</th>
+              <th>Counter</th>
               <th>Rule</th>
-              <th>Reward</th>
+              <th>Outcome</th>
               <th>Voucher</th>
-              <th>Status</th>
+              <th>Entry</th>
               <th>Created</th>
             </tr>
           </thead>
           <tbody>
-            {logs.rewardIssues.map((issue) => (
-              <tr key={issue.id}>
-                <td>{issue.campaignId.slice(0, 8)}</td>
-                <td>{issue.rewardTemplateId.slice(0, 8)}</td>
-                <td>{issue.voucherCode}</td>
-                <td>{issue.status}</td>
-                <td>{new Date(issue.createdAt).toLocaleString()}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="card">
-        <h3>Message attempts</h3>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Channel</th>
-              <th>Status</th>
-              <th>Error</th>
-              <th>Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            {logs.messageAttempts.map((attempt) => (
-              <tr key={attempt.id}>
-                <td>{attempt.channel}</td>
-                <td>{attempt.status}</td>
-                <td>{attempt.error ?? "-"}</td>
-                <td>{new Date(attempt.createdAt).toLocaleString()}</td>
+            {decisions.map((decision) => (
+              <tr key={decision.id}>
+                <td>{decision.transactionId}</td>
+                <td>{decision.programId}</td>
+                <td>{decision.counterValue}</td>
+                <td>{decision.matchedRuleId ?? "-"}</td>
+                <td>
+                  {decision.outcomeType} · {decision.status}
+                </td>
+                <td>{decision.voucherCode ?? "-"}</td>
+                <td>{decision.competitionEntry ? "Yes" : "No"}</td>
+                <td>{new Date(decision.createdAt).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
