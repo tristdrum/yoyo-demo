@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import logo from "../logo.png";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const mode = process.env.NEXT_PUBLIC_APP_MODE ?? "mock";
@@ -7,6 +9,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <main className="app-shell">
       <div className="admin-shell">
         <nav className="side-nav">
+          <Image src={logo} alt="YoYo Logo" width={120} height={40} style={{ marginBottom: "1rem" }} />
           <h2>YoYo Builder</h2>
           <Link href="/admin/campaigns">Campaigns</Link>
           <Link href="/admin/templates">Templates</Link>

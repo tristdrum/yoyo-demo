@@ -1,10 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
+import logo from "./logo.png";
 
 export default function HomePage() {
   return (
     <main className="app-shell">
       <section className="hero">
         <div>
+          <Image src={logo} alt="YoYo Logo" width={150} height={50} style={{ marginBottom: "1.5rem" }} />
           <p className="badge badge-neutral">Surprise & Delight Builder</p>
           <h1>Turn transactions into moments worth talking about.</h1>
           <p>
