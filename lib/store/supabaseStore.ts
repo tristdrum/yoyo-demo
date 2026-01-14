@@ -329,11 +329,9 @@ export const supabaseStore = {
       throw new Error(`Failed to update campaign: ${error.message}`);
     }
     if (!data) return null;
-    const version =
-      data.current_version_id ?
-        await this.getCampaignVersion(data.current_version_id) :
-        null;
-    return mapCampaign(data as CampaignRow, version);
+    const row = data as CampaignRow;
+    const version = row.current_version_id ? await this.getCampaignVersion(row.current_version_id) : null;
+    return mapCampaign(row, version);
   },
   async listCampaignVersions(campaignId: string): Promise<CampaignVersion[]> {
     const supabase = getSupabaseAdmin();
