@@ -267,11 +267,9 @@ export const supabaseStore = {
       throw new Error(`Failed to load campaign: ${error.message}`);
     }
     if (!data) return null;
-    const version =
-      data.current_version_id ?
-        await this.getCampaignVersion(data.current_version_id) :
-        null;
-    return mapCampaign(data as CampaignRow, version);
+    const row = data as CampaignRow;
+    const version = row.current_version_id ? await this.getCampaignVersion(row.current_version_id) : null;
+    return mapCampaign(row, version);
   },
   async getActiveCampaignForProgram(programId: string): Promise<Campaign | null> {
     const supabase = getSupabaseAdmin();
