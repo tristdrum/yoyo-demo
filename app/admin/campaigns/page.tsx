@@ -29,7 +29,7 @@ export default function CampaignsPage() {
     const form = new FormData(formEl);
     const payload = {
       name: String(form.get("name") || "New Campaign"),
-      retailer: String(form.get("retailer") || "YoYo Demo Retailer"),
+      retailer: String(form.get("retailer") || "Yoyo Demo Retailer"),
       probability: Number(form.get("probability") || 0.02),
       capWindow: String(form.get("capWindow") || "week"),
       capMax: Number(form.get("capMax") || 1),
@@ -62,7 +62,7 @@ export default function CampaignsPage() {
           </div>
           <div className="field">
             <label>Retailer</label>
-            <input name="retailer" placeholder="YoYo Demo Retailer" />
+            <input name="retailer" placeholder="Yoyo Demo Retailer" />
           </div>
           <div className="field">
             <label>Status</label>

@@ -9,8 +9,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <main className="app-shell">
       <div className="admin-shell">
         <nav className="side-nav">
-          <Image src={logo} alt="YoYo Logo" width={120} height={40} style={{ marginBottom: "1rem" }} />
-          <h2>YoYo Builder</h2>
+          <Image src={logo} alt="Yoyo Logo" width={120} height={40} style={{ marginBottom: "1rem" }} />
+          <h2>Yoyo Builder</h2>
           <Link href="/admin/campaigns">Campaigns</Link>
           <Link href="/admin/templates">Templates</Link>
           <Link href="/admin/simulator">Simulator</Link>
