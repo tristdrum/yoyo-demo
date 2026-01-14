@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StepCarousel } from "@/components/StepCarousel";
 
 export default function HomePage() {
   return (
@@ -22,10 +23,7 @@ export default function HomePage() {
         </div>
         <div className="hero-card animate-in delay-3">
           <h3>Demo flow snapshot</h3>
-          <p>1. Build a campaign with probability + caps.</p>
-          <p>2. Simulate a transaction and evaluate eligibility.</p>
-          <p>3. Issue reward + send message with fallback.</p>
-          <p>4. Review logs for full traceability.</p>
+          <StepCarousel />
         </div>
       </section>
     </main>

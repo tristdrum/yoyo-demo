@@ -92,6 +92,76 @@ main {
   margin: 0 0 12px;
 }
 
+.carousel {
+  position: relative;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 4px;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.step-text {
+  margin: 0;
+  padding-top: 6px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
