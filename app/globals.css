@@ -5,8 +5,8 @@
   --surface-strong: #fff1dd;
   --ink: #1c1612;
   --muted: #6f655f;
-  --accent: #0b7d6c;
-  --accent-dark: #075f52;
+  --accent: #f97316;
+  --accent-dark: #ea580c;
   --highlight: #f5b70a;
   --warn: #d14b3f;
   --line: rgba(28, 22, 18, 0.12);
@@ -24,9 +24,7 @@ body {
   margin: 0;
   font-family: var(--font-sans), "Segoe UI", sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at top left, #fff5de 0%, transparent 45%),
-    radial-gradient(circle at 10% 50%, #e9f6f2 0%, transparent 50%),
-    linear-gradient(120deg, #f7f1e7 0%, #f5efe8 100%);
+  background: linear-gradient(135deg, #040404 0%, #1D1D1F 100%);
 }
 
 a {
@@ -64,10 +62,13 @@ main {
 }
 
 .hero h1 {
-  font-family: var(--font-display), "Georgia", serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
   font-size: clamp(2.6rem, 4vw, 4rem);
   margin: 0 0 16px;
+  font-weight: 700;
   letter-spacing: -0.02em;
+  color: #fff;
+  animation: slideFromLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
 .hero p {
@@ -83,11 +84,11 @@ main {
   padding: 24px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(28, 22, 18, 0.08);
-  animation: rise 0.7s ease both;
 }
 
 .hero-card h3 {
-  font-family: var(--font-display), "Georgia", serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  font-weight: 600;
   margin: 0 0 12px;
 }
 
@@ -109,13 +110,13 @@ main {
 .button-primary {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(11, 125, 108, 0.3);
+  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.3);
 }
 
 .button-ghost {
   background: transparent;
   color: var(--accent);
-  border: 1px solid rgba(11, 125, 108, 0.35);
+  border: 1px solid rgba(249, 115, 22, 0.5);
 }
 
 .card-cta {
@@ -143,7 +144,8 @@ main {
 }
 
 .side-nav h2 {
-  font-family: var(--font-display), "Georgia", serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  font-weight: 600;
   font-size: 1.4rem;
   margin: 0 0 16px;
 }
@@ -185,7 +187,8 @@ main {
 }
 
 .section-header h2 {
-  font-family: var(--font-display), "Georgia", serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -387,7 +390,7 @@ pre {
 
 @keyframes rise {
   from {
-    transform: translateY(12px);
+    transform: translateY(40px);
     opacity: 0;
   }
   to {
@@ -395,6 +398,25 @@ pre {
     opacity: 1;
   }
 }
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.delay-0 { animation-delay: 0ms; }
+.delay-1 { animation-delay: 250ms; }
+.delay-2 { animation-delay: 500ms; }
 
 @media (max-width: 900px) {
   .admin-shell {

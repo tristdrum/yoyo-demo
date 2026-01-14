@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <main className="app-shell">
       <section className="hero">
-        <div>
+        <div className="animate-in delay-0">
           <p className="badge badge-neutral">Surprise & Delight Builder</p>
           <h1>Turn transactions into moments worth talking about.</h1>
           <p>
@@ -20,7 +20,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="hero-card">
+        <div className="hero-card animate-in delay-1">
           <h3>Demo flow snapshot</h3>
           <p>1. Build a campaign with probability + caps.</p>
           <p>2. Simulate a transaction and evaluate eligibility.</p>
